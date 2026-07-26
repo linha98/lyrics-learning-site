@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f1115" />
+  <meta name="description" content="支持日文、罗马音、中文翻译和语法解释切换的歌词学习网站。" />
+  <title>歌词学习</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-row">
+      <button id="menuBtn" class="icon-btn" type="button" aria-label="歌曲列表"
+        aria-controls="drawer" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+      </button>
+      <div class="title-wrap">
+        <h1 class="song-title" id="songTitle">加载中…</h1>
+        <div class="song-sub" id="songSub"></div>
+      </div>
+      <button id="themeBtn" class="icon-btn" type="button" aria-label="切换到浅色主题"
+        aria-pressed="false">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 3a9 9 0 109 9 7 7 0 01-9-9z"/></svg>
+      </button>
+    </div>
+
+    <div class="toolbar">
+      <div class="chips" id="chips">
+        <button class="chip" type="button" data-key="jp" aria-pressed="true">日文</button>
+        <button class="chip" type="button" data-key="romaji" aria-pressed="true">罗马音</button>
+        <button class="chip" type="button" data-key="cn" aria-pressed="true">中文</button>
+        <button class="chip" type="button" data-key="note" aria-pressed="false">解释</button>
+      </div>
+      <div class="font-ctrl">
+        <button id="fontMinus" class="mini-btn" type="button" aria-label="缩小字体">A−</button>
+        <button id="fontPlus" class="mini-btn" type="button" aria-label="放大字体">A+</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="lyrics" class="lyrics"></main>
+  <div id="statusMessage" class="sr-only" aria-live="polite"></div>
+
+  <!-- 歌曲抽屉 -->
+  <div id="drawerMask" class="drawer-mask" aria-hidden="true"></div>
+  <aside id="drawer" class="drawer" role="dialog" aria-modal="true"
+    aria-labelledby="drawerTitle" aria-hidden="true" inert>
+    <div class="drawer-head">
+      <span id="drawerTitle">歌曲列表</span>
+      <button id="drawerClose" class="icon-btn" type="button" aria-label="关闭歌曲列表">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M6.4 5L5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12 19 6.4 17.6 5 12 10.6z"/></svg>
+      </button>
+    </div>
+    <label class="sr-only" for="search">搜索歌曲</label>
+    <input id="search" class="search" type="search" placeholder="搜索歌曲…" autocomplete="off" />
+    <ul id="songList" class="song-list" aria-label="歌曲"></ul>
+    <div class="drawer-foot">共 <span id="songCount">0</span> 首 · 数据来自腾讯文档</div>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>
